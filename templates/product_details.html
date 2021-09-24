@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% load markdownify %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/product_details.css' %}"> {% endblock %} {% block content %}
+<div class="main">
+    <div class="product-specs">
+        <div class="product-details">
+            <h5 class="product-header">اسم المنتج:</h5>
+            <p class="product-name">{{ product.name }}</p>
+            <h5 class="product-header">اسم الصنف:</h5>
+            <a href="{{ product.category.get_absolute_url }}" class="product-category">{{ product.category }}</a>
+            <h5 class="product-price">{{ product.price }} جنيه مصرى</h5>
+            {% if product.discount %}
+            <span class="replace"><span class="off-price">{{ product.price_before_discount }}</span>جنيه مصرى</span>
+            {% endif %}
+            <p class="delivery"><img src="{% static 'img/location.png' %}" alt="اماكن التوصيل"><span>التوصيل داخل مصر</span></p>
+            <h5 class="quantity-header">الكمية:</h5>
+            <div class="quantity">
+                <a href="#" id="increase"><img src="{% static 'img/plus.png' %}" alt="زود"></a>
+                <span class="num">1</span>
+                <a href="#" id="decrease"><img src="{% static 'img/minus.png' %}" alt="نقص"></a>
+            </div>
+            <a href="#" class="add-to-cart-btn" onclick="add_to_cart(this, {{ product.id }})" data-url="{% url 'cart:add_to_cart' %}" redirect-url="{% url 'cart:cart_detail' %}">
+                <img src="{% static 'img/cart.png' %}" alt="عربة التسوق">
+                <span>اضف الى العربة</span>
+            </a>
+            <a href="#" class="add-to-cart-btn order-btn" onclick="add_to_cart(this, {{ product.id }})" data-url="{% url 'cart:add_to_cart' %}" redirect-url="{% url 'order:create_order' %}">
+                <span>اطلب الان</span>
+            </a>
+        </div>
+        <div class="slideshow">
+            <a href="#" onclick="plus(1)"><img src="{% static 'img/right-arrow.png' %}" alt="forward"></a>
+            {% for image in album %}
+            <img src="{{ image.image.url }}" alt="{{ product.name }}" class="product-img"> {% endfor %}
+            <a href="#" onclick="plus(-1)"><img src="{% static 'img/right-arrow.png' %}" alt="backward" class="forward"></a>
+        </div>
+    </div>
+    <div class="info">
+        <div class="menu">
+            {% if product.overview %}
+            <span class="desc menu-item" onclick="preview(this)">شرح المنتج</span> {% endif %} {% if product.details %}
+            <span class="details menu-item" onclick="preview(this)">وصف المنتج</span> {% endif %} {% if product.how_to_use %}
+            <span class="how-to-use menu-item" onclick="preview(this)">كيفية الاستخدام</span> {% endif %} {% if product.video %}
+            <span class="product-video menu-item" onclick="preview(this)">فيديو للمنتج</span> {% endif %}
+        </div>
+        <div class="content">
+            <div class="desc content-val">{{ product.overview | markdownify | safe }}</div>
+            <div class="details content-val">{{ product.details | markdownify | safe }}</div>
+            <div class="how-to-use content-val">{{ product.how_to_use | markdownify | safe }}</div>
+            <div class="product-video content-val">
+                <iframe width="100%" height="450px" src="{{ product.video }}"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block script %}
+<script src="{% static 'js/product_details.js' %}"></script>
+{% endblock %}

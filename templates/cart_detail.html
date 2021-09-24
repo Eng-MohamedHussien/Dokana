@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/cart_detail.css' %}"> {% endblock %} {% block content %} {% if cart|length > 0 %}
+<div class="cart-content">
+    <div class="header">
+        <span class="product-col-name">عربة التسوق</span>
+        <span class="price-col-name">السعر</span>
+    </div>
+    {% for item in cart %}
+    <div class="row">
+        <div class="row-details">
+            <div class="product-img">
+                <img src="{{ item.product.get_album_master_scene_image }}" alt="{{ item.product.name }}">
+            </div>
+            <div class="product-details">
+                <h6 class="product-name-header">اسم المنتج :</h6>
+                <a href="{% url 'product:product_details' item.product.slug %}"><span class="product-name-val">{{ item.product.name }}</span></a>
+                <span class="product-category-header">الصنف</span>
+                <a href="{% url 'product:show_category_items' item.product.category.slug %}"><span class="product-category-val">{{ item.product.category }}</span></a>
+                <div class="quantity">
+                    <span class="product-quantity-header">الكمية :</span>
+                    <div class="quantity-controller">
+                        <a href="#" onclick="update_quantity(this, {{ item.product.id }}, 1)" data-url="{% url 'cart:update_cart' %}" redirect-url="{% url 'cart:cart_detail' %}"><img src="{% static 'img/plus.png' %}" class="increase" alt="زود"></a>
+                        <span class="{{ item.product.id }}">{{ item.quantity }}</span>
+                        <a href="#" onclick="update_quantity(this, {{ item.product.id }}, -1)" data-url="{% url 'cart:update_cart' %}" redirect-url="{% url 'cart:cart_detail' %}"><img src="{% static 'img/minus.png' %}" class="decrease" alt="نقص"></a>
+                    </div>
+                    <span class="delete" onclick="remove(this, {{ item.product.id }})" data-url="{% url 'cart:remove_from_cart' %}" redirect-url="{% url 'cart:cart_detail' %}">حذف</span>
+                </div>
+            </div>
+        </div>
+        <div class="row-price">
+            <span class="item-total-price">{{ item.total_price }} جنيه</span>
+        </div>
+    </div>
+    <hr> {% endfor %}
+    <div class="total_cost">
+        <span class="total-price-header">المبلغ الكلى :</span>
+        <span class="total-price">{{ cart.get_total_price }} جنيه</span>
+    </div>
+    <div class="options">
+        <a href="{% url 'product:home' %}" class="back-btn">
+            <span class='back-txt'>الرجوع</span>
+            <img src="{% static 'img/back.png' %}" alt="رجوع" class="back-logo">
+        </a>
+        <a href="{% url 'order:create_order' %}" class="order-btn">متابعة الشراء</a>
+    </div>
+</div>
+{% else %}
+<div class="cart-empty">
+    <h1 class="header-txt">عربة التسوق فارغة</h1>
+    <h2 class="header-txt" style="margin-bottom: 32px">ابدأ بملئها الآن</h2>
+    <div class="background-container">
+        <img src="{% static 'img/shopcart.png' %}" alt="عربة التسوق" class="cart-logo">
+    </div>
+    <a href="{% url 'product:home' %}" class="shopping-btn">تسوق الآن</a>
+</div>
+{% endif %} {% endblock %} {% block script %}
+<script src="{% static 'js/cart_detail.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow"> {% load static %}
+    <meta name="description" content="دكانة موقع بيوفرلك خدمةافتح دكانتك على الموقع علشان تعرض منتجاتك و تحسن مبيعاتك و ذلك من خلال امهر المسوقين والبائعين مقابل عمولة.">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    {% block css %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>
+        {% block title %} {% if title != none %} {{ title }} {% else %} تسويق منتجات بالعمولة | افتح دكانتك اونلاين - دكانة {% endif %} {% endblock title %}
+    </title>
+</head>
+
+<body>
+    <div class="mobile-menu">
+        <img src="{% static 'img/x-mark.png' %}" alt="اغلق القائمة" class="close" onclick="closeMenu()">
+        <h4 class="categories">الاقسام</h4>
+        {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}" class="category-link">
+            <div class="category">
+                {% if category.name == selected_category.name %}
+                <span id="selected">{{ category.name }}</span> {% else %}
+                <span>{{ category.name }}</span> {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="plain">
+        <!-- Navbar -->
+        <nav>
+            <div class="right-sec">
+                <img src="{% static 'img/hamburger-menu.png' %}" alt="اظهر القائمة" class="hamburger-menu" onclick="showMenu()">
+                <div class="logo">
+                    <a href="{% url 'product:home' %}"><img src="{% static 'img/logo.png' %}" alt="موقع دكانة" class="logo-icon"></a>
+                </div>
+            </div>
+
+            <div class="search">
+                <form action="" method="get">
+                    <input type="text" name="search-query" id="search-query" placeholder="ما الذى تبحث عنه؟">
+                    <button type="submit" class="submit-btn"><img src="{% static 'img/search.png' %}" alt="ابحث عن ما تريد فى دكانة" class="search-img"></button>
+                </form>
+            </div>
+
+            <div class="left-sec">
+                <div class="open-dokana">
+                    <a href="{% url 'product:open_dokana' %}"><img src="{% static 'img/shop.png' %}" alt="دكانة" class="open-dokana-logo"></a>
+                    <a href="{% url 'product:open_dokana' %}" class="item">افتح دكانتك</a>
+                </div>
+                <div class="cart">
+                    <a href="{% url 'cart:cart_detail' %}" class="cart-link">
+                        <span class="cart-counter">{{ cart|length }}</span>
+                        <img src="{% static 'img/shopcart.png' %}" alt="عربة التسوق" class="cart-img">
+                        <span class="cart-name">العربة</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="mobile-search">
+                <form action="" method="get">
+                    <input type="text" name="search-query" id="s-query" placeholder="ما الذى تبحث عنه؟">
+                    <button type="submit"><img src="{% static 'img/search.png' %}" alt="ابحث عن ما تريد فى دكانة"></button>
+                </form>
+            </div>
+            {% block content %} {% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="marketing">
+                <div class="logo-container">
+                    <img src="{% static 'img/offwhite_logo.png' %}" alt="دكانة" class="footer-logo">
+                </div>
+                <div class="awareness">
+                    <span>تسوق اينما كنت</span>
+                    <img src="{% static 'img/cart.png' %}" alt="عربة التسوق" class="footer-cart">
+                    <p class="paragraph">احمى نفسك و عائلتك من فيروس كورونا وابقى فى المنزل</p>
+                    <p>استمتع بوقتك فى المنزل و اشترى اونلاين كل احتياجاتك من دكانة</p>
+                </div>
+                <div class="services">
+                    <h5>افتح فرعك اونلاين</h5>
+                    <h5>سوق منتجاتك على دكانة</h5>
+                </div>
+            </div>
+
+            <div class="contact">
+                <div class="contactus">
+                    <h6>تواصل معنا</h6>
+                    <p style="margin-bottom: 0px;">dokana389@gmail.com</p>
+                </div>
+                <div class="copyright">
+                    <p style="margin-bottom: 0px;">جميع الحقوق محفوظة <span dir="ltr">2021&copy;dokana</span></p>
+                </div>
+                <div class="social-media">
+                    <h6>تابعنا على مواقع التواصل الاجتماعى</h6>
+                    <div class="social-icons" dir="ltr">
+                        <img src="{% static 'img/telegram.png' %}" alt="تليجرام" class="icon">
+                        <img src="{% static 'img/whatsapp.png' %}" alt="واتساب" class="icon">
+                        <a href="https://www.facebook.com/Dokana-%D8%AF%D9%83%D8%A7%D9%86%D9%87-102443838820506/">
+                            <img src="{% static 'img/facebook.png' %}" alt="فيسبوك" class="icon">
+                        </a>
+                        <a href="https://youtube.com/channel/UCXAmxR1cIUrjgq36-Zz9ZYg">
+                            <img src="{% static 'img/youtube.png' %}" alt="يوتيوب" class="icon">
+                        </a>
+                        <a href="https://www.instagram.com/dokana_eg/">
+                            <img src="{% static 'img/instagram.png' %}" alt="انستجرام" class="icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JS -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X38M2XP6H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6X38M2XP6H');
+
+        function showMenu() {
+            const menu = document.getElementsByClassName("mobile-menu")[0];
+            menu.style.display = "block";
+            const plain = document.getElementsByClassName("plain")[0];
+            plain.style.opacity = "0.4";
+            plain.blur();
+            document.getElementsByClassName("hamburger-menu")[0].style.display = "none";
+        }
+
+        function closeMenu() {
+            const menu = document.getElementsByClassName("mobile-menu")[0];
+            menu.style.display = "none";
+            const plain = document.getElementsByClassName("plain")[0];
+            plain.style.opacity = "1";
+            plain.focus();
+            document.getElementsByClassName("hamburger-menu")[0].style.display = "block";
+        }
+
+        document.getElementsByClassName("plain")[0].addEventListener("click", function(event){
+            const menu = document.getElementsByClassName("mobile-menu")[0];
+            const hamburger_menu = document.getElementsByClassName("hamburger-menu")[0];
+            if(menu.style.display == "block" && event.target != hamburger_menu)
+            {
+                closeMenu();
+            }
+        }); 
+
+        window.addEventListener("resize", () => {
+            const menu = document.getElementsByClassName("mobile-menu")[0];
+            const hamburger_menu = document.getElementsByClassName("hamburger-menu")[0];
+            if(window.innerWidth <= 768)
+            {
+                hamburger_menu.style.display = "block";   
+            }else{
+                if(menu.style.display == "block")
+                {
+                    console.log('in2');
+                    closeMenu();
+                }
+                hamburger_menu.style.display = "none";
+            }
+        });
+    </script>
+    {% block script %} {% endblock %}
+
+</body>
+
+</html>

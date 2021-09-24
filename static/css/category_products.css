@@ -1,0 +1,250 @@
+.products-container {
+    margin: 32px;
+}
+
+.belong-to {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+}
+
+.master {
+    display: flex;
+}
+
+.menu {
+    width: 300px;
+    height: 400px;
+    overflow-y: scroll;
+    border: 2px solid #314C93;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.category {
+    display: flex;
+    margin: 8px 0px;
+}
+
+.category img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: auto 16px;
+}
+
+.category span {
+    color: black;
+    font-size: 16px;
+    font-weight: 300;
+    display: block;
+    margin: auto 8px;
+    text-align: center;
+}
+
+#selected {
+    border-bottom: 2px solid #FFA401;
+}
+
+.container {
+    box-sizing: border-box;
+}
+
+.products {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.product {
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+    margin: 0px 8px 16px 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 6px;
+    margin: 8px 0px;
+}
+
+.product-category {
+    color: #aaa;
+    display: block;
+    margin: 8px 0px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.product-name {
+    display: block;
+    font-size: medium;
+    font-weight: 500;
+    margin: 8px 0px;
+    text-align: center;
+    width: 200px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.product-price {
+    display: block;
+    font-size: medium;
+    font-weight: 600;
+    margin: 16px 0px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.currency {
+    font-size: small;
+    font-weight: lighter;
+}
+
+.add-to-cart {
+    display: block;
+    margin: 12px;
+    padding: 8px;
+    text-decoration: none;
+    background-color: #1D2C59;
+    color: white;
+    border: 1px solid white;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 32px auto;
+    padding: 16px;
+}
+
+.page-link {
+    margin: 8px;
+    padding: 12px 16px;
+    border: 2px solid #314C93;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    display: none;
+    color: #314C93;
+}
+
+.current {
+    background: #314C93;
+    color: white;
+}
+
+.button {
+    padding: 8px;
+    margin: auto 16px;
+}
+
+.next {
+    transform: rotate(180deg);
+}
+
+.not-available {
+    /*margin: 32px auto;*/
+    margin: 0px;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header-txt {
+    color: gray;
+    margin-top: 64px;
+}
+
+.warning {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+.category-link:hover {
+    text-decoration: none;
+}
+
+.category span:hover {
+    color: #7666F3;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.add-to-cart:hover {
+    text-decoration: none;
+    color: #F5B10A;
+}
+
+.off-price {
+    text-decoration: line-through;
+    margin: 4px;
+}
+
+.menu::-webkit-scrollbar {
+    width: 16px;
+}
+
+.menu::-webkit-scrollbar-track {
+    background: #D6D6D6;
+    border-radius: 20px;
+    display: block;
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background-color: #888888;
+    border-radius: 20px;
+    border: 3px solid #D6D6D6;
+}
+
+.client {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.client-header,
+.client-logo {
+    display: block;
+}
+
+.client-header {
+    font-size: medium;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+    .pagination {
+        margin: 16px;
+        padding: 8px;
+    }
+    .page-link {
+        margin: 4px;
+        padding: 6px 8px;
+    }
+    .button {
+        padding: 4px;
+        margin: auto 8px;
+    }
+    .header-txt {
+        font-size: large;
+    }
+}

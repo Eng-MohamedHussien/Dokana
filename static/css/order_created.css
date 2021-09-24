@@ -1,0 +1,24 @@
+.order-success {
+    width: 340px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.success {
+    margin: 32px;
+}
+
+.success-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.congratulate {
+    margin-bottom: 8px;
+    font-size: x-large;
+    color: #1D2C59;
+}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %} {% block content %}
+<div class="offers-container">
+    <div class="categories-menu">
+        {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}" class="category-link">
+            <div class="category">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}"> 
+                <span>{{ category.name }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="offers-slider" style="background: url('{% static 'img/background.png' %}'); background-repeat: no-repeat; background-size: cover;">
+        <h3>افتح فرعك اونلاين</h3>
+        <h3>وسوق منتجاتك على دكانه</h3>
+        <div class="designs">
+            <div class="design fade"><img src="{% static 'img/shoes_design.png' %}" alt="صورة لعروض و خصومات"></div>
+            <div class="design fade"><img src="{% static 'img/bags_design.png' %}" alt="صورة لعروض و خصومات"></div>
+            <div class="design fade"><img src="{% static 'img/earpods_design.png' %}" alt="صورة لعروض و خصومات"></div>
+            <div class="design fade"><img src="{% static 'img/clothes_design.png' %}" alt="صورة لعروض و خصومات"></div>
+        </div>
+        <div class="slider-controller">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+</div>
+<div class="categories-designs">
+    <div class="design-header">
+        <h5 class="design-name">خصومات و عروض</h5>
+        <a href="{% url 'product:show_discounts' %}">تسوق الآن</a>
+    </div>
+    <div class="discount-designs">
+        {% for category in categories %} {% if category.discount_design %}
+        <div class="category-discount-design">
+            <a href="{% url 'product:show_discounts_per_category' category.slug %}"><img src="{{ category.discount_design.url }}" alt="صورة خصومات و عروض لل{{ category.name}}" class="discount-design-logo"></a>
+        </div>
+        {% endif %} {% endfor %}
+    </div>
+</div>
+<div class="categories-designs">
+    {% for category in categories %} {% if category.design %}
+    <div class="category-design">
+        <div class="design-header">
+            <h5 class="design-name">{{ category.name }}</h5>
+            <a href="{% url 'product:show_category_items' category.slug %}">تسوق الآن</a>
+        </div>
+        <a href="{% url 'product:show_category_items' category.slug %}"><img src="{{ category.design.url }}" alt="صورة تسويقية لل{{ category.name}}" class="design-logo"></a>
+    </div>
+    {% endif %} {% endfor %}
+</div>
+{% endblock %} {% block script %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

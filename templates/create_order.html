@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/create_order.css' %}"> {% endblock %} {% load crispy_forms_tags %} {% block content %}
+<div class="order-register">
+    <p class="order-header">طلبك على بعد خطوة <img src="{% static 'img/staircase.png' %}" alt="سجل اوردرك" class="header-logo"></p>
+    <form method="post" class="order-form" action="{% url 'order:create_order' %}">
+        {% csrf_token %} {{ form|crispy }}
+        <button type="submit" class="order-btn">
+            <img src="{% static 'img/contact-form.png' %}" alt="سجل بياناتك" class="fill-data-logo">
+            <span class="fill-data-txt">سجل بياناتك</span>
+        </button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/order_created.css' %}"> {% endblock %} {% block content %}
+<div class="order-success">
+    <div class="success">
+        <img src="{% static 'img/order_success.png' %}" alt="تهانينا" class="success-logo">
+    </div>
+    <p class="congratulate">تهانينا تم تسجيل طلبك بنجاح</p>
+    <p class="congratulate">سوف يتم التواصل معك فى اقرب وقت</p>
+    <p class="congratulate">لمراجعة الطلب و التاكد من البيانات</p>
+</div>
+{% endblock %}

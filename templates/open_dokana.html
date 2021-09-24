@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/open_dokana.css' %}"> {% endblock %} {% block content %}
+<div class="not-available">
+    <h1 class="header-txt">عفوا الخدمة غير متوفرة حاليا</h1>
+    <h2 class="header-txt">يرجى المحاولة لاحقا</h2>
+    <div class="background-container">
+        <img src="{% static 'img/warning.png' %}" alt="تنبيه" class="warning">
+    </div>
+    <a href="{% url 'product:home' %}" class="back-btn">
+        <span class='back-txt'>الرجوع</span>
+        <img src="{% static 'img/back.png' %}" alt="رجوع" class="back-logo">
+    </a>
+</div>
+{% endblock %}

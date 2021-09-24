@@ -1,0 +1,253 @@
+.categories-designs {
+    margin: 16px;
+}
+
+.design-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.design-name {
+    padding: 8px;
+}
+
+.design-header a {
+    display: block;
+    text-align: center;
+    border: 2px solid #394459;
+    border-radius: 8px;
+    color: #314C93;
+    padding: 4px 12px;
+    margin: 4px;
+    color: #314C93;
+    font-size: 18px;
+}
+
+.design-header a:hover {
+    text-decoration: none;
+    background-color: #314C93;
+    color: white;
+    border-color: white;
+}
+
+.design-logo {
+    display: block;
+    width: 100%;
+    height: 300px;
+    margin: 4px auto;
+}
+
+.discount-designs {
+    background: #F2F2F2;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4px auto;
+}
+
+.discount-designs>div {
+    flex: 50%;
+    margin-bottom: 8px;
+}
+
+.discount-design-logo {
+    display: block;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+.offers-container {
+    margin: 32px 16px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.categories-menu {
+    width: 275px;
+    height: 400px;
+    overflow-y: scroll;
+    border: 2px solid #314C93;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.category-link:hover {
+    text-decoration: none;
+}
+
+.category {
+    display: flex;
+    margin: 8px 0px;
+}
+
+.category img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: auto 16px;
+}
+
+.category span {
+    color: black;
+    font-size: 16px;
+    font-weight: 300;
+    display: block;
+    margin: auto 8px;
+    width: 100%;
+    text-align: right;
+}
+
+.category span:hover {
+    color: #7666F3;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.offers-slider {
+    height: 425px;
+    width: 100%;
+    margin: 0px 16px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.offers-slider h3 {
+    text-align: center;
+    margin: 12px auto;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.designs {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    margin: 8px auto;
+}
+
+.designs img {
+    display: block;
+    width: 500px;
+    height: 250px;
+    margin: auto;
+}
+
+.slider-controller {
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%, -92%);
+    margin: auto;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #717171;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.design {
+    display: none;
+}
+
+.active {
+    background-color: #bbb;
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-delay: 0.2s;
+    animation-name: fade;
+    animation-duration: 2.5s;
+    animation-delay: 0.2s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.categories-menu::-webkit-scrollbar {
+    width: 16px;
+}
+
+.categories-menu::-webkit-scrollbar-track {
+    background: #D6D6D6;
+    border-radius: 20px;
+    display: block;
+}
+
+.categories-menu::-webkit-scrollbar-thumb {
+    background-color: #888888;
+    border-radius: 20px;
+    border: 3px solid #D6D6D6;
+}
+
+@media only screen and (min-width: 1920px) {
+    .discount-design-logo {
+        height: 500px;
+    }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1919px) {
+    .discount-design-logo {
+        height: 375px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .design-logo {
+        height: 225px;
+    }
+    .discount-designs>div {
+        flex: 100%;
+    }
+    .categories-menu {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .design-logo {
+        height: 125px;
+    }
+    .discount-design-logo {
+        height: 215px;
+    }
+    .offers-slider {
+        height: 300px;
+    }
+    .designs img {
+        width: 275px;
+        height: 125px;
+        margin: auto;
+    }
+    .offers-slider h3 {
+        font-size: large;
+    }
+}
