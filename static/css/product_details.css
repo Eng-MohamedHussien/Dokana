@@ -21,7 +21,8 @@
 .slideshow img {
     display: block;
     width: 70%;
-    height: 400px;
+    object-fit: scale-down;
+    height: 425px;
     margin: auto;
 }
 

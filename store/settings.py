@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'crispy_forms',
     'users.apps.UsersConfig',
+    'django_cleanup.apps.CleanupConfig',
     #'storages'
 ]
 

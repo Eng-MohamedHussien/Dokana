@@ -2,6 +2,10 @@
     margin: 16px;
 }
 
+.category-design {
+    margin: 8px auto;
+}
+
 .design-header {
     display: flex;
     justify-content: space-between;
@@ -9,6 +13,7 @@
 
 .design-name {
     padding: 8px;
+    margin-bottom: 0px;
 }
 
 .design-header a {
@@ -33,8 +38,8 @@
 .design-logo {
     display: block;
     width: 100%;
-    height: 300px;
     margin: 4px auto;
+    object-fit: contain;
 }
 
 .discount-designs {
@@ -53,7 +58,7 @@
 
 .discount-design-logo {
     display: block;
-    height: 300px;
+    object-fit: contain;
     width: 100%;
     border-radius: 10px;
     box-sizing: border-box;
@@ -124,27 +129,31 @@
 }
 
 .designs {
-    width: 100%;
+    width: fit-content;
     position: absolute;
     top: 60%;
     left: 50%;
     transform: translate(-50%, -60%);
-    margin: 8px auto;
+    margin: 8px auto 0px auto;
+    padding: 0px 8px;
 }
 
 .designs img {
     display: block;
-    width: 500px;
-    height: 250px;
+    width: 100%;
+    /*height: 250px;*/
+    object-fit: contain;
     margin: auto;
 }
 
 .slider-controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 92%;
     left: 50%;
     transform: translate(-50%, -92%);
-    margin: auto;
+    margin: 8px auto;
 }
 
 .dot {
@@ -208,44 +217,24 @@
     border: 3px solid #D6D6D6;
 }
 
-@media only screen and (min-width: 1920px) {
-    .discount-design-logo {
-        height: 500px;
-    }
-}
-
-@media only screen and (min-width: 1280px) and (max-width: 1919px) {
-    .discount-design-logo {
-        height: 375px;
-    }
-}
-
 @media only screen and (max-width: 768px) {
-    .design-logo {
-        height: 225px;
-    }
     .discount-designs>div {
         flex: 100%;
     }
     .categories-menu {
         display: none;
     }
+    .design-name {
+        font-size: medium;
+    }
+    .design-header a {
+        font-size: medium;
+    }
 }
 
 @media only screen and (max-width: 600px) {
-    .design-logo {
-        height: 125px;
-    }
-    .discount-design-logo {
-        height: 215px;
-    }
     .offers-slider {
         height: 300px;
-    }
-    .designs img {
-        width: 275px;
-        height: 125px;
-        margin: auto;
     }
     .offers-slider h3 {
         font-size: large;

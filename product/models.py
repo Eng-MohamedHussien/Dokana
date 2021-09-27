@@ -113,7 +113,7 @@ def generate_album_path(instance, filename):
 
 @receiver(pre_save, sender=Product)
 def update_youtube_link(sender, instance, **kwargs):
-    if instance.video != None:
+    if instance.video != None and ('embed' not in instance.video and 'youtube' in instance.video):
         video_id = instance.video[instance.video.index("?v=") + 3 : ]
         new_youtube_video = "https://www.youtube.com/embed/" + video_id
         instance.video = new_youtube_video
