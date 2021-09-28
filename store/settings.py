@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -182,3 +183,35 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = 'Dokana Team <noreply@dokana.com>'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5 MB
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'level': 'DEBUG',
+            'handlers': ['file']
+        },
+        'django.server': {
+            'level': 'DEBUG',
+            'handlers': ['file']
+        },
+        'django.template': {
+            'level': 'DEBUG',
+            'handlers': ['file']
+        },
+    }
+}
