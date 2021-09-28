@@ -202,16 +202,16 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'level': 'DEBUG',
-            'handlers': ['file']
+            'handlers': ['file'],
+            'propagate': False
         },
         'django.server': {
-            'level': 'DEBUG',
-            'handlers': ['file']
+            'handlers': ['file'],
+            'propagate': False
         },
         'django.template': {
-            'level': 'DEBUG',
-            'handlers': ['file']
+            'handlers': ['file'],
+            'propagate': False
         },
     }
 }
