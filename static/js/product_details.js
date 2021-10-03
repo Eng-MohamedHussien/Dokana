@@ -4,7 +4,7 @@ function selectItem() {
         const classes = ["desc", "details", "how-to-use", "product-video"]
         for (let i = 0; i < classes.length; i++) {
             const element = document.getElementsByClassName(classes[i]);
-            if (element.length > 0) {
+            if (element.length > 1) {
                 element[0].classList.add("selected");
                 element[1].style.display = "block";
                 break;
