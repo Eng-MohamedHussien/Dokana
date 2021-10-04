@@ -17,18 +17,3 @@ function showSlides() {
     dots[slideIndex - 1].className += " active";
     setTimeout(showSlides, 2500);
 }
-
-
-window.addEventListener("resize", () => {
-    let height = getComputedStyle(document.getElementsByClassName("designs")[0]).height;
-    let x = getComputedStyle(document.getElementsByClassName("designs")[0]).top;
-    height = (parseInt(height) / 2 + parseInt(x) + 16).toString() + "px";
-    document.getElementsByClassName("slider-controller")[0].style.top = height;
-});
-
-window.addEventListener("load", () => {
-    let height = getComputedStyle(document.getElementsByClassName("designs")[0]).height;
-    let x = getComputedStyle(document.getElementsByClassName("designs")[0]).top;
-    height = (parseInt(height) / 2 + parseInt(x) + 16).toString() + "px";
-    document.getElementsByClassName("slider-controller")[0].style.top = height;
-});
