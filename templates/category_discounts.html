@@ -1,68 +1,66 @@
 {% extends 'base.html' %} {% load static %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/category_products.css' %}"> {% endblock %} {% block content %}
 <div class="products-container">
-    <div class="master">
-        <div class="menu">
-            {% for category in categories %}
-            <a href="{% url 'product:show_discounts_per_category' category.slug %}" class="category-link">
-                <div class="category">
-                    <img src="{{ category.image.url }}" alt="{{ category.name }}"> {% if category.name == selected_category.name %}
-                    <span id="selected">{{ category.name }}</span> {% else %}
-                    <span>{{ category.name }}</span> {% endif %}
+    <div class="menu">
+        {% for category in categories %}
+        <a href="{% url 'product:show_discounts_per_category' category.slug %}" class="category-link">
+            <div class="category">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}"> {% if category.name == selected_category.name %}
+                <span id="selected">{{ category.name }}</span> {% else %}
+                <span>{{ category.name }}</span> {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="container">
+        {% if products|length > 0 %}
+        <div class="products">
+            {% for product in products %}
+            <div class="product">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{{ product.get_album_master_scene_image }}" alt="{{ product.name }}" class="product-img">
+                </a>
+                <span class="product-category">{{ product.category }}</span>
+                <a href="{{ product.get_absolute_url }}" onmouseover="highlight(this)" onmouseleave="backward(this)" class="product-name">
+                    {{ product.name }}
+                </a>
+                <div class="price">
+                    <span class="product-price">{{ product.price }} <span class="currency">جنيه مصرى</span></span>
+                    <span class="discount-price"><span class="off-price">{{ product.price_before_discount }}</span><span class="currency" style="color: #aaa;">جنيه مصرى</span></span>
                 </div>
-            </a>
+                {% if product.merchant.logo %}
+                <div class="client">
+                    <span class="client-header">البائع</span>
+                    <img src="{{ product.merchant.logo.url }}" alt="لوجو الموقع او الصفحة او المحل" width="35px" height="35px" class="client-logo">
+                </div>
+                {% endif %}
+                <a href="#" data-url="{% url 'cart:add_to_cart' %}" redirect-url="{% url 'cart:cart_detail' %}" class="add-to-cart" onclick="add_to_cart(this, {{ product.id }})"><img src="{% static 'img/cart.png' %}" alt="عربة التسوق" style="display: inline-block; box-sizing: border-box; width: 30px; height: 30px; margin: auto 4px;"> اضف الى العربة</a>
+            </div>
             {% endfor %}
         </div>
-        <div class="container">
-            {% if products|length > 0 %}
-            <div class="products">
-                {% for product in products %}
-                <a href="{{ product.get_absolute_url }}">
-                    <div class="product">
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{{ product.get_album_master_scene_image }}" alt="{{ product.name }}" class="product-img">
-                        </a>
-                        <span class="product-category">{{ product.category }}</span>
-                        <a href="{{ product.get_absolute_url }}" style="text-decoration: none; color: black;" onmouseover="highlight(this)" onmouseleave="backward(this)">
-                            <span class="product-name">{{ product.name }}</span>
-                        </a>
-                        <span class="product-price">{{ product.price }} <span class="currency">جنيه مصرى</span></span>
-                        <span class="product-price" style="margin-top: 0px;"><span class="off-price">{{ product.price_before_discount }}</span><span class="currency">جنيه مصرى</span></span>
-                        {% if product.merchant.logo %}
-                            <div class="client">
-                                <span class="client-header">البائع</span>
-                                <img src="{{ product.merchant.logo.url }}" alt="لوجو الموقع او الصفحة او المحل" width="35px" height="35px" class="client-logo">
-                            </div>
-                        {% endif %}
-                        <a href="#" data-url="{% url 'cart:add_to_cart' %}" redirect-url="{% url 'cart:cart_detail' %}" class="add-to-cart" onclick="add_to_cart(this, {{ product.id }})"><img src="{% static 'img/cart.png' %}" alt="عربة التسوق" style="display: inline-block; box-sizing: border-box; width: 30px; height: 30px; margin: auto 4px;"> اضف الى العربة</a>
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
-            <div class="pagination" dir="ltr">
-                {% if products.has_previous %}
-                <a href="?page={{ products.previous_page_number }}" class="button"><img src="{% static 'img/previous.png' %}" alt="السابق" class="belong-to next"></a>
-                {% else %}
-                <span class="button"><img src="{% static 'img/previous.png' %}" alt="السابق" class="belong-to next"></span> {% endif %} {% for i in products.paginator.page_range %} {% if products.number == i %}
-                <a href="?page={{ i }} " style="text-decoration: none; color:#aaa ">
-                    <span class="page-link current"> {{ i }} </span>
-                </a>
-                {% else %}
-                <a href="?page={{ i }} " style="text-decoration: none; color:#aaa ">
-                    <span class="page-link "> {{ i }} </span>
-                </a>
-                {% endif %} {% endfor %} {% if products.has_next %}
-                <a href="?page={{ products.next_page_number }}" class="button"><img src="{% static 'img/previous.png' %}" alt="التالى" class="belong-to"></a>
-                {% else %}
-                <span class="button"><img src="{% static 'img/previous.png' %}" alt="التالى" class="belong-to"></span> {% endif %}
-            </div>
+        <div class="pagination" dir="ltr">
+            {% if products.has_previous %}
+            <a href="?page={{ products.previous_page_number }}" class="button"><img src="{% static 'img/previous.png' %}" alt="السابق" class="belong-to next"></a>
             {% else %}
-                <div class="not-available">
-                    <img src="{% static 'img/nothing.png' %}" alt="تنبيه" class="warning">
-                    <h1 class="header-txt">عفوا لا توجد خصومات و عروض على المنتجات فى الوقت الحالى !</h1>
-                </div>
-            {% endif %}
+            <span class="button"><img src="{% static 'img/previous.png' %}" alt="السابق" class="belong-to next"></span> {% endif %} {% for i in products.paginator.page_range %} {% if products.number == i %}
+            <a href="?page={{ i }} " style="text-decoration: none; color:#aaa ">
+                <span class="page-link current"> {{ i }} </span>
+            </a>
+            {% else %}
+            <a href="?page={{ i }} " style="text-decoration: none; color:#aaa ">
+                <span class="page-link "> {{ i }} </span>
+            </a>
+            {% endif %} {% endfor %} {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}" class="button"><img src="{% static 'img/previous.png' %}" alt="التالى" class="belong-to"></a>
+            {% else %}
+            <span class="button"><img src="{% static 'img/previous.png' %}" alt="التالى" class="belong-to"></span> {% endif %}
         </div>
+        {% else %}
+            <div class="not-available">
+                <img src="{% static 'img/nothing.png' %}" alt="تنبيه" class="warning">
+                <h1 class="header-txt">عفوا لا توجد خصومات و عروض على المنتجات فى الوقت الحالى !</h1>
+            </div>
+        {% endif %}
     </div>
 </div>
 

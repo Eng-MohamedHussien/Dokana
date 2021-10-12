@@ -1,5 +1,8 @@
 .products-container {
     margin: 32px;
+    display: grid;
+    grid-template-columns: 225px auto;
+    grid-column-gap: 0.6rem;
 }
 
 .belong-to {
@@ -8,12 +11,7 @@
     margin: auto;
 }
 
-.master {
-    display: flex;
-}
-
 .menu {
-    width: 300px;
     height: 400px;
     overflow-y: scroll;
     border: 2px solid #314C93;
@@ -40,39 +38,40 @@
     font-weight: 300;
     display: block;
     margin: auto 8px;
-    text-align: center;
+    text-align: right;
+    width: 100%;
 }
 
 #selected {
     border-bottom: 2px solid #FFA401;
 }
 
-.container {
-    box-sizing: border-box;
-}
-
 .products {
     box-sizing: border-box;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 240px);
+    grid-gap: 10px;
+    justify-content: center;
 }
 
 .product {
+    width: 240px;
+    box-sizing: border-box;
+    height: 475px;
     border: 1px solid whitesmoke;
     border-radius: 6px;
-    margin: 0px 8px 16px 8px;
-    padding: 16px;
+    padding: 8px;
+    margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .product-img {
+    display: block;
     width: 200px;
     height: 200px;
     border: 2px solid white;
     border-radius: 6px;
-    margin: 8px 0px;
+    margin: 8px auto;
 }
 
 .product-category {
@@ -86,13 +85,21 @@
 .product-name {
     display: block;
     font-size: medium;
+    color: black;
     font-weight: 500;
-    margin: 8px 0px;
+    margin: 8px auto;
     text-align: center;
     width: 200px;
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px auto;
 }
 
 .product-price {
@@ -102,6 +109,11 @@
     margin: 16px 0px;
     text-align: center;
     box-sizing: border-box;
+}
+
+.discount-price {
+    display: block;
+    text-align: center;
 }
 
 .currency {
@@ -155,7 +167,6 @@
 }
 
 .not-available {
-    /*margin: 32px auto;*/
     margin: 0px;
     text-align: center;
     position: relative;
@@ -194,6 +205,9 @@
 .off-price {
     text-decoration: line-through;
     margin: 4px;
+    color: #aaa;
+    font-size: small;
+    font-weight: lighter;
 }
 
 .menu::-webkit-scrollbar {
@@ -229,6 +243,9 @@
 }
 
 @media screen and (max-width: 768px) {
+    .products-container {
+        display: block;
+    }
     .menu {
         display: none;
     }

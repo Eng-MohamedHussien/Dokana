@@ -1,31 +1,11 @@
 function highlight(element) {
-    const product_name = element.querySelector("span");
-    product_name.style.color = "#aaa";
+    element.style.color = "#aaa";
+    element.style.textDecoration = "none";
 }
 
 function backward(element) {
-    const product_name = element.querySelector("span");
-    product_name.style.color = "black";
+    element.style.color = "black";
 }
-
-
-window.addEventListener("load", productShowhandler);
-window.addEventListener("resize", productShowhandler);
-
-function productShowhandler() {
-    if (document.getElementsByClassName("products").length > 0) {
-        const main_container = document.querySelector(".container");
-        const products_container = document.querySelector(".products");
-        const full_width = main_container.getBoundingClientRect().width;
-        const width = (200 + 2 * 1 + 2 * 16 + 2 * 1) + 2 * 8;
-        let no_elements = Math.trunc(full_width / width);
-        if (no_elements > document.getElementsByClassName("product").length) {
-            no_elements = document.getElementsByClassName("product").length;
-        }
-        products_container.style.width = `${no_elements * width}px`;
-    }
-}
-
 
 function showPagination() {
     if (document.getElementsByClassName("pagination").length > 0) {
@@ -56,15 +36,6 @@ function showPagination() {
 }
 
 showPagination();
-
-function toggle() {
-    const mobile_menu = document.getElementsByClassName("mobile-menu")[0];
-    if (mobile_menu.style.display == "none") {
-        mobile_menu.style.display = "block";
-    } else {
-        mobile_menu.style.display = "none";
-    }
-}
 
 function getCookie(name) {
     let cookieValue = null;
